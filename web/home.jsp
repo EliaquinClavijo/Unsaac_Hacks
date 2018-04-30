@@ -166,9 +166,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <div class="w3-col l8 s12">
       <!-- Blog entry -->
       <div class="w3-container w3-white w3-margin w3-padding-large">
+          <form  id="2018a" name="YuliSeFue" method="POST" >
+              <input type="hidden" name="UsuarioD" value="<%=Nombre%>"/>
         <div class="w3-center">
           <h3>MIS CURSOS</h3>
-          <h5> Semestre Academico <span class="w3-opacity">2017-2</span></h5>
+          <h5> Semestre Academico <select id="Aver"  name="Cod" >
+                                 <option value=2018-1>2018-1</option>
+                                 <option value=2017-2>2017-2</option>                               
+                      </select></h5>
+          
           <%
               BasicDBObject query1 = new BasicDBObject(); 
                             MongoCollection<Document> miColeccion1 = baseDatos.getCollection("CP");
@@ -185,23 +191,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
                             }
           %>
         </div>
+          </form>
 
         <div class="w3-justify">
-          <p><strong> Consultado </strong> el 23/03/2018 14:24 </p>
-          <div class="table-responsive">
-          <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Creditos</th>
-                    <th scope="col">Categoria</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                
+          <p><strong> Consultado </strong> el 28/04/2018 00:48 </p>
+          <div id="Aqui" ></div>
+   
            <%
                query = new BasicDBObject();
                  List<String> LCursos = new ArrayList<String>();
@@ -216,98 +211,30 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
                             LCursos.add(G.getString("CodC")); 
                             }                           
              cursor.close();
-             miColeccion = baseDatos.getCollection("Cursos");
-              for (int i = 0; i <= LCursos.size() - 1; i++) {
-                        query = new BasicDBObject();
-                        query.put("CodC", LCursos.get(i));
-                        cursor = miColeccion.find(query).iterator();
-                        while (cursor.hasNext()) {
-                            BasicDBObject G = BasicDBObject.parse( cursor.next().toJson()); 
-                            %>
-                            <tr>
-                                <th scope="row"><%=i+1%></th>
-                                <td><%=G.getString("CodC")%></td>
-                                <td><%=G.getString("Name")%></td>
-                                <td><%=G.getString("Credit")%></td>
-                                <td><%=G.getString("Cat")%></td>
-                              </tr>
-                            <%
-                            } 
-                       cursor.close();
-                }
+            
             %> 
           <!-- Example of comment field -->
-                </tbody>
-              </table>
-          </div>
+                
         </div>
       </div>
 
       <!-- Blog entry -->
       <div class="w3-container w3-white w3-margin w3-padding-large">
+          <form  id="2018b" name="YuliSeFue1" method="POST" >
+              <input type="hidden" name="UsuarioD" value="<%=Nombre%>"/>
         <div class="w3-center">
           <h3>COMPAÑEROS</h3>
-          <h5>Semestre Academico <span class="w3-opacity"> 2017-2 </span></h5>
+          <h5>Semestre Academico <select  id="Aver1" name="Cod1" >
+                                <option value=2018-1>2018-1</option>
+                                 <option value=2017-2>2017-2</option>
+                                 
+                      </select></h5>
         </div>
-
+          </form>
         <div class="w3-justify">
-          <p><strong> Consultado </strong> el 23/03/2018 14:24 </p> 
-          <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                  <!-- Brand and toggle get grouped for better mobile display -->
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Consulta</a>
-                  </div>
-
-                  <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
-                    <form  id="Send12" name="Yuli2" method="POST" >
-                       <div class="w3-row-padding">
-                       <div class="w3-half">
-                      <input type="hidden" name="UsuarioD" value="<%=Nombre%>"/>
-                   <div class="form-group">
-                      <select   name="Cod" class="form-control">
-                        
-                            <%
-                        miColeccion = baseDatos.getCollection("Cursos");
-                            for (int i = 0; i <= LCursos.size() - 1; i++) {
-                                      query = new BasicDBObject();
-                                      query.put("CodC", LCursos.get(i));
-                                      cursor = miColeccion.find(query).iterator();
-                                      while (cursor.hasNext()) {
-                                          BasicDBObject G = BasicDBObject.parse( cursor.next().toJson());                       
-                                          %>
-                                          <option value=<%=LCursos.get(i)%>><%=G.getString("Name")%></option>
-                                          <%
-                                          } 
-                                     cursor.close();
-                                    }
-                                %>
-                        
-                      </select>
-                  </div>
-                           </div>   
-                        <div class="w3-half">
-                            <div class="w3-row-padding">
-                                
-                                    
-                                    <div class="w3-half">
-                                  <button id="Sendqq" type="button"  class="btn btn-default">Consultar</button>
-                                    </div>
-                                
-                            </div>  
-                       </div>
-                       </div>
-                   </form>
-                  </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-        </nav>
+          <p><strong> Consultado </strong> el 28/04/2018 00:47 </p> 
+          <div id="Aqui1" ></div>
+          
                         
              <div id="Replace3"></div>
         </div>
@@ -322,7 +249,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <div class="w3-white w3-margin">
          <div id="Replace1" class="w3-content w3-container w3-padding-64">
             <h3 class="w3-center">Consultar Creditos </h3>
-            <p class="w3-center"><em> La consulta puede tardar unos minutos, sea paciente, termine su encuesta antes :v </em></p>
+            <p class="w3-center"><em> La consulta puede tardar de 1 a 2 minutos, sea paciente :v </em></p>
             <div  id="Replace2" class="w3-row-padding" >
                       <form  id="Send123" name="Yuli1" method="POST" > 
                     <div class="w3-row">
@@ -412,7 +339,60 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
+        $(document).ready(function () {
+               
+                    $.ajax({
+                        data: $("#2018a").serialize(),
+                        url: "Cursos.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui").html(result);
+                                }});
+                       
+            
+            }); 
 
+        $(document).ready(function () {
+                $("#Aver").click(function (event) {
+                    $.ajax({
+                        data: $("#2018a").serialize(),
+                        url: "Cursos.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui").html(result);
+                                }});
+                       
+                });
+            }); 
+            $(document).ready(function () {
+               
+                    $.ajax({
+                        data: $("#2018b").serialize(),
+                        url: "MainClassMate.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui1").html(result);
+                                }});
+                       
+            
+            }); 
+
+        $(document).ready(function () {
+                $("#Aver1").click(function (event) {
+                    $.ajax({
+                        data: $("#2018b").serialize(),
+                        url: "MainClassMate.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui1").html(result);
+                                }});
+                       
+                });
+            }); 
 $(document).ready(function () {
                 $("#VerAll1").click(function (event) {
                     $.ajax({
@@ -473,22 +453,7 @@ $(document).ready(function () {
                 
             });
             
-            $(document).ready(function () {
-                
-                $("#Sendqq").click(function (event) {
-                
-                    $.ajax({
-                        data: $("#Send12").serialize(),
-                        url: "ClassMate.jsp",
-                        type:"POST",
-                        success:
-                                function (result) {
-                                    $("#Replace3").html(result);
-                                }});
-                        
-                });
-                
-            });
+           
 </script>
 
 </body>

@@ -10,7 +10,7 @@
       
    <header class="w3-container" >
   
-    <h5><b><i class="fa fa-dashboard"></i> Te la creiste wexd, aun estamos trabajando en eso :'v </b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Nada xd :v </b></h5>
   </header>
 
   

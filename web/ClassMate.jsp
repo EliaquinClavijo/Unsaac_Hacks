@@ -33,9 +33,12 @@
               
            
         <%
+            String Sem = "";
             String User = "";
             String Cod = "";
             String Cod2 = "Date";
+            String AlumCurs = "AlumCurs";
+            String Cursos = "Cursos";
             if (request.getParameter("Cod") != null) {
                 Cod = request.getParameter("Cod");
                 }
@@ -45,8 +48,11 @@
             if (request.getParameter("UsuarioD") != null) {
                 User = request.getParameter("UsuarioD");
                 }
-            
-            
+            if (request.getParameter("Semestre") != null)
+                {
+                    Sem = request.getParameter("Semestre");
+                }
+            if (Sem.equals("2018-1")){AlumCurs = "AlumCurs2018";Cursos = "Cursos2018";}
             
             MongoClient clienteMongo = new MongoClient("127.0.0.1", 27017);
             MongoDatabase baseDatos = clienteMongo.getDatabase("UnsaacDB");
@@ -54,7 +60,7 @@
             String NombreE = "";
             BasicDBObject query = new BasicDBObject();
        
-            MongoCollection<Document> miColeccion = baseDatos.getCollection("AlumCurs");
+            MongoCollection<Document> miColeccion = baseDatos.getCollection(AlumCurs);
             MongoCursor<Document> cursor;
             query.put("CodC", Cod);
             cursor = miColeccion.find(query).iterator();

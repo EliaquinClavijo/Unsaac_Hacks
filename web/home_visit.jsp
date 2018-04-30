@@ -61,8 +61,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
         if (request.getParameter("CodigoE") != null) {
                 Nombre = request.getParameter("CodigoE");
                     }
-    
-     MongoClient clienteMongo = new MongoClient("127.0.0.1", 27017);
+        MongoClient clienteMongo = new MongoClient("127.0.0.1", 27017);
    MongoDatabase baseDatos = clienteMongo.getDatabase("UnsaacDB");
        
        String NombreE = "";
@@ -137,7 +136,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <% Nombre =((Nombre.equals("140992"))? "000000" : Nombre);%>
       <img src="http://ccomputo.unsaac.edu.pe/alumno/fotos/<%=Nombre%>.jpg" style="width:70%;" class="w3-round"><br><br>
       <% Nombre =((Nombre.equals("000000"))? "140992" : Nombre);%>
-    <h4><b>Perfil</b></h4>
+      <h4><b>Perfil</b></h4>
     <p class="w3-text-grey"><%=NameAll+" "+Apellido%></p>
   </div>
     <form  id="Menu_1"  method="POST"> 
@@ -157,25 +156,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
   <!-- Header -->
    <header id="portfolio" class="w3-container w3-padding-24 w3-white">
-       <% Nombre =((Nombre.equals("140992"))? "000000" : Nombre);%>
-       <a href="#"><img src="http://ccomputo.unsaac.edu.pe/alumno/fotos/<%=Nombre%>.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+     <% Nombre =((Nombre.equals("140992"))? "000000" : Nombre);%>  
+    <a href="#"><img src="http://ccomputo.unsaac.edu.pe/alumno/fotos/<%=Nombre%>.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <% Nombre =((Nombre.equals("000000"))? "140992" : Nombre);%>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <h1 class="w3-xxlarge"><b> Consultas y mas :v </b></h1>
-    
-    <% Nombre =((Nombre.equals("000000"))? "140992" : Nombre);%>
-    <h6> Bienvenido, <span> :v</span></h6>
+    <h6> Bienvenido, <span> Seguridad primero :v</span></h6>
   </header>
   <div id="Replace" class="w3-row w3-padding ">
 
     <!-- Blog entries -->
     <div class="w3-col l8 s12">
- 
-
       <!-- Blog entry -->
       <div class="w3-container w3-white w3-margin w3-padding-large">
+          <form  id="2018a" name="YuliSeFue" method="POST" >
+              <input type="hidden" name="UsuarioD" value="<%=Nombre%>"/>
         <div class="w3-center">
           <h3>MIS CURSOS</h3>
-          <h5> Semestre Academico <span class="w3-opacity">2017-2</span></h5>
+          <h5> Semestre Academico <select id="Aver"  name="Cod" >
+                                 <option value=2018-1>2018-1</option>
+                                 <option value=2017-2>2017-2</option>                               
+                      </select></h5>
+          
           <%
               BasicDBObject query1 = new BasicDBObject(); 
                             MongoCollection<Document> miColeccion1 = baseDatos.getCollection("CP");
@@ -192,23 +194,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
                             }
           %>
         </div>
+          </form>
 
         <div class="w3-justify">
-          <p><strong> Consultado </strong> el 23/03/2018 14:24 </p>
-          <div class="table-responsive">
-          <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Creditos</th>
-                    <th scope="col">Categoria</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                
+          <p><strong> Consultado </strong> el 28/04/2018 00:48 </p>
+          <div id="Aqui" ></div>
+   
            <%
                query = new BasicDBObject();
                  List<String> LCursos = new ArrayList<String>();
@@ -223,98 +214,30 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
                             LCursos.add(G.getString("CodC")); 
                             }                           
              cursor.close();
-             miColeccion = baseDatos.getCollection("Cursos");
-              for (int i = 0; i <= LCursos.size() - 1; i++) {
-                        query = new BasicDBObject();
-                        query.put("CodC", LCursos.get(i));
-                        cursor = miColeccion.find(query).iterator();
-                        while (cursor.hasNext()) {
-                            BasicDBObject G = BasicDBObject.parse( cursor.next().toJson()); 
-                            %>
-                            <tr>
-                                <th scope="row"><%=i+1%></th>
-                                <td><%=G.getString("CodC")%></td>
-                                <td><%=G.getString("Name")%></td>
-                                <td><%=G.getString("Credit")%></td>
-                                <td><%=G.getString("Cat")%></td>
-                              </tr>
-                            <%
-                            } 
-                       cursor.close();
-                }
+            
             %> 
           <!-- Example of comment field -->
-                </tbody>
-              </table>
-          </div>
+                
         </div>
       </div>
 
       <!-- Blog entry -->
       <div class="w3-container w3-white w3-margin w3-padding-large">
+          <form  id="2018b" name="YuliSeFue1" method="POST" >
+              <input type="hidden" name="UsuarioD" value="<%=Nombre%>"/>
         <div class="w3-center">
           <h3>COMPAÑEROS</h3>
-          <h5>Semestre Academico <span class="w3-opacity"> 2017-2 </span></h5>
-        </div>
-
-        <div class="w3-justify">
-          <p><strong> Consultado </strong> el 23/03/2018 14:24 </p> 
-          <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                  <!-- Brand and toggle get grouped for better mobile display -->
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Consulta</a>
-                  </div>
-
-                  <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
-                    <form  id="Send12" name="Yuli2" method="POST" >
-                       <div class="w3-row-padding">
-                       <div class="w3-half">
-                      <input type="hidden" name="UsuarioD" value="<%=Nombre%>"/>
-                   <div class="form-group">
-                      <select   name="Cod" class="form-control">
-                        
-                            <%
-                        miColeccion = baseDatos.getCollection("Cursos");
-                            for (int i = 0; i <= LCursos.size() - 1; i++) {
-                                      query = new BasicDBObject();
-                                      query.put("CodC", LCursos.get(i));
-                                      cursor = miColeccion.find(query).iterator();
-                                      while (cursor.hasNext()) {
-                                          BasicDBObject G = BasicDBObject.parse( cursor.next().toJson());                       
-                                          %>
-                                          <option value=<%=LCursos.get(i)%>><%=G.getString("Name")%></option>
-                                          <%
-                                          } 
-                                     cursor.close();
-                                    }
-                                %>
-                        
-                      </select>
-                  </div>
-                           </div>   
-                        <div class="w3-half">
-                            <div class="w3-row-padding">
-                                
+          <h5>Semestre Academico <select  id="Aver1" name="Cod1" >
+                                <option value=2018-1>2018-1</option>
+                                 <option value=2017-2>2017-2</option>
                                  
-                                    <div class="w3-half">
-                                  <button id="Sendqq" type="button"  class="btn btn-default">Consultar</button>
-                                    </div>
-                                
-                            </div>  
-                       </div>
-                       </div>
-                   </form>
-                  </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-        </nav>
+                      </select></h5>
+        </div>
+          </form>
+        <div class="w3-justify">
+          <p><strong> Consultado </strong> el 28/04/2018 00:47 </p> 
+          <div id="Aqui1" ></div>
+          
                         
              <div id="Replace3"></div>
         </div>
@@ -329,7 +252,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <div class="w3-white w3-margin">
          <div id="Replace1" class="w3-content w3-container w3-padding-64">
             <h3 class="w3-center">Consultar Creditos </h3>
-            <p class="w3-center"><em> La consulta puede tardar, sea paciente :v</em></p>
+            <p class="w3-center"><em> La consulta puede tardar de 1 a 2 minutos, sea paciente :v </em></p>
             <div  id="Replace2" class="w3-row-padding" >
                       <form  id="Send123" name="Yuli1" method="POST" > 
                     <div class="w3-row">
@@ -360,9 +283,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
           <div class="w3-container w3-display-container w3-light-grey w3-section" >
               <p class="w3-center"><em> Ingrese sus datos, no es necesario rellenar todo el formulario, solo la informacion que disponga.</em></p>
            <div  id="Replace4" class="w3-row-padding" >
-                      <form  id="Send122" name="Yuli1" method="POST" > 
+                   <form  id="Send122" name="Yuli1" method="POST" > 
                     <div class="w3-row">
-                      <input class="w3-input w3-border" type="text" placeholder="Nombre o Apellido " required name="Name" autocomplete="off">
+                      <input class="w3-input w3-border" type="text" placeholder="Nombre o parte del mismo" required name="Name" autocomplete="off">
                     </div>
                           <br>
                     <div class="w3-row">
@@ -397,9 +320,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <hr>
 
       </div>
-      <hr>
-
- 
+                                
 
     <!-- END About/Intro Menu -->
     </div>
@@ -421,7 +342,60 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
+        $(document).ready(function () {
+               
+                    $.ajax({
+                        data: $("#2018a").serialize(),
+                        url: "Cursos.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui").html(result);
+                                }});
+                       
+            
+            }); 
 
+        $(document).ready(function () {
+                $("#Aver").click(function (event) {
+                    $.ajax({
+                        data: $("#2018a").serialize(),
+                        url: "Cursos.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui").html(result);
+                                }});
+                       
+                });
+            }); 
+            $(document).ready(function () {
+               
+                    $.ajax({
+                        data: $("#2018b").serialize(),
+                        url: "MainClassMate.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui1").html(result);
+                                }});
+                       
+            
+            }); 
+
+        $(document).ready(function () {
+                $("#Aver1").click(function (event) {
+                    $.ajax({
+                        data: $("#2018b").serialize(),
+                        url: "MainClassMate.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Aqui1").html(result);
+                                }});
+                       
+                });
+            }); 
 $(document).ready(function () {
                 $("#VerAll1").click(function (event) {
                     $.ajax({
@@ -447,22 +421,7 @@ $(document).ready(function () {
                 });
             }); 
 
-            $(document).ready(function () {
-                
-                $("#SendYul1").click(function (event) {
-                
-                    $.ajax({
-                        data: $("#Send122").serialize(),
-                        url: "SearchAlumno.jsp",
-                        type:"POST",
-                        success:
-                                function (result) {
-                                    $("#Replace5").html(result);
-                                }});
-                        $('#Replace4').html('<br><div align="center"><img src="loading.gif"/></div>');
-                });
-                
-            });
+            
 
             $(document).ready(function () {
                 
@@ -476,27 +435,28 @@ $(document).ready(function () {
                                 function (result) {
                                     $("#Replace1").html(result);
                                 }});
-                        $('#Replace2').html('<br><div align="center"><img src="loading.gif"/></div><br>');
+                        $('#Replace2').html('<br><div align="center"><img src="loading.gif"/></div>');
+                });
+                
+            });
+            $(document).ready(function () {
+                
+                $("#SendYul1").click(function (event) {
+                
+                    $.ajax({
+                        data: $("#Send122").serialize(),
+                        url: "SearchAlumno.jsp",
+                        type:"POST",
+                        success:
+                                function (result) {
+                                    $("#Replace5").html(result);
+                                }});
+                        $('#Replace4').html('<br><div align="center"><img src="loading.gif"/></div><br>');
                 });
                 
             });
             
-            $(document).ready(function () {
-                
-                $("#Sendqq").click(function (event) {
-                
-                    $.ajax({
-                        data: $("#Send12").serialize(),
-                        url: "ClassMate.jsp",
-                        type:"POST",
-                        success:
-                                function (result) {
-                                    $("#Replace3").html(result);
-                                }});
-                        
-                });
-                
-            });
+           
 </script>
 
 </body>
